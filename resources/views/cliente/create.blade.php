@@ -153,13 +153,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="email">
-                    <li class="nav-item"><a class="nav-link" href="../../app/email/inbox.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="{{route('cliente.create')}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Cadastrar</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../../app/email/email-detail.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="{{route('cliente.read')}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Listar</span>
                         </div>
                       </a>
@@ -614,31 +614,71 @@
           <div class="row g-0" >
             <div class="col-lg-12 pe-lg-2" >
               <div class="card mb-3">
+
+                @if($msg = Session::get("sucess"))
+                    <div class="alert alert-success" role="alert">
+                        {{$msg}}
+                    </div>
+                @endif
+
+                @if($msg = Session::get("error"))
+                    <div class="alert alert-danger" role="alert">
+                        {{$msg}}
+                    </div>
+                @endif
+                @if($msg = Session::get("sucess"))
+                    <div class="alert alert-success" role="alert">
+                        A simple success alert—check it out!
+                        {{$msg}}
+                    </div>
+                @endif
+
                 <div class="card-header">
                   <h5 class="mb-0">Detalhes do cliente</h5>
                 </div>
                 <div class="card-body bg-light">
-                  <form>
+                  <form method="POST" action="{{route("cliente.create")}}">
+                    @csrf
                     <div class="row gx-2">
 
 
 
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-city">Nome</label>
-                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" />
+                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" name="nome"/>
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-state">Tipo de cliente</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="Tipo de cliente" />
+                        {{-- <input class="form-control" id="event-state" type="text" placeholder="Tipo de cliente" name="data_criacao"/> --}}
+                        <select class="form-control" name="tipo">
+                            <option value="Particular">Particular</option>
+                            <option value="Estabelecimento">Estabelecimento</option>
+                        </select>
                       </div>
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Contacto</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="Country" />
+                        <label class="form-label" for="event-country">Numero da conta</label>
+                        <input class="form-control" type="text" placeholder="Numero da conta" name="numero_conta"/>
                       </div>
 
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-city">IBAN</label>
-                        <input class="form-control" id="event-city" type="text" placeholder="iban" />
+                        <input class="form-control" type="text" placeholder="iban" />
+                      </div>
+                      <div class="col-sm-4 mb-3">
+                        <label class="form-label" for="event-state">Contacto</label>
+                        <input class="form-control" id="event-state" type="text" placeholder="Contacto" name="contacto_1"/>
+                      </div>
+                      <div class="col-sm-4 mb-3">
+                        <label class="form-label" for="event-country">Contacto</label>
+                        <input class="form-control" id="event-country" type="text" placeholder="Contacto" name="contacto_2"/>
+                      </div>
+
+                      <div class="col-sm-4 mb-3">
+                        <label class="form-label" for="event-city">Codigo da agencia</label>
+                        <select class="form-control" name="codigo_agencia">
+                            <option value="Particular">Particular</option>
+                            <option value="Estabelecimento">Estabelecimento</option>
+                        </select>
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-state">State</label>
@@ -650,37 +690,25 @@
                       </div>
 
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-city">Nome</label>
-                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" />
+                        <label class="form-label" for="event-city">Endereco</label>
+                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" name="endereco"/>
                       </div>
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-state">State</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="State" />
+                        <label class="form-label" for="event-state">Municipio</label>
+                        <input class="form-control" id="event-state" type="text" placeholder="State" name="municipio" />
                       </div>
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Country</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="Country" />
-                      </div>
-
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-city">Nome</label>
-                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" />
-                      </div>
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-state">State</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="State" />
-                      </div>
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Country</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="Country" />
+                        <label class="form-label" for="event-country">Provincia</label>
+                        <input class="form-control" id="event-country" type="text" placeholder="provincia" name="provincia"/>
                       </div>
 
 
 
                       <div class="col-12">
-                        <button class="btn btn-primary btn-lg">Salvar</button>
+                        <input type="submit" class="btn btn-primary btn-lg" value="Salvar"/>
                       </div>
                     </div>
+                    @csrf
                   </form>
                 </div>
               </div>

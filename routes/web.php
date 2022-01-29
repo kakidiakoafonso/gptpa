@@ -21,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('delete/{id}', [EstabelecimentoController::class,"delete"])->name("delete");
 
 Route::get('cliente',[clienteController::class,'view'])->name('cliente.view');
+Route::get('cliente/listar',[clienteController::class,'read'])->name('cliente.read');
 Route::post('cliente',[clienteController::class,'create'])->name('cliente.create');
-Route::put('cliente',[clienteController::class,'update'])->name('cliente.update');
-Route::delete('cliente',[clienteController::class,'delete'])->name('cliente.update');
+Route::get('cliente/update/{id}',[clienteController::class,'updateShow'])->name('cliente.update');
+Route::get('cliente/delete/{id}',[clienteController::class,'delete'])->name('cliente.delete');
 
 
 // Route::get('tpa',[clienteController::class,'show'])->name('tpa.view');
