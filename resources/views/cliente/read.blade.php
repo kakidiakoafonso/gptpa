@@ -200,7 +200,7 @@
                   <ul class="nav collapse show" id="e-commerce">
 
 
-                    <li class="nav-item"><a class="nav-link active" href="../../app/e-commerce/customers.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link active" href="{{route("cliente.create")}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Cadastrar</span>
                         </div>
                       </a>

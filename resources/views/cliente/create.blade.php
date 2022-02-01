@@ -177,13 +177,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="events">
-                    <li class="nav-item"><a class="nav-link" href="../../app/events/create-an-event.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="{{route("cliente.create")}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Cadastrar</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../../app/events/event-detail.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="{{route("cliente.read")}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Listar</span>
                         </div>
                       </a>
@@ -626,12 +626,6 @@
                         {{$msg}}
                     </div>
                 @endif
-                @if($msg = Session::get("sucess"))
-                    <div class="alert alert-success" role="alert">
-                        A simple success alert—check it out!
-                        {{$msg}}
-                    </div>
-                @endif
 
                 <div class="card-header">
                   <h5 class="mb-0">Detalhes do cliente</h5>
@@ -656,13 +650,13 @@
                         </select>
                       </div>
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Numero da conta</label>
+                        <label class="form-label" for="event-country">Número da conta</label>
                         <input class="form-control" type="text" placeholder="Numero da conta" name="numero_conta"/>
                       </div>
 
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-city">IBAN</label>
-                        <input class="form-control" type="text" placeholder="iban" />
+                        <input class="form-control" type="text" placeholder="iban" name="iban"/>
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-state">Contacto</label>
@@ -674,19 +668,9 @@
                       </div>
 
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-city">Codigo da agencia</label>
-                        <select class="form-control" name="codigo_agencia">
-                            <option value="Particular">Particular</option>
-                            <option value="Estabelecimento">Estabelecimento</option>
-                        </select>
-                      </div>
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-state">State</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="State" />
-                      </div>
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Country</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="Country" />
+                        <label class="form-label" for="event-city">Codigo da agência</label>
+                        <input class="form-control" id="event-state" type="text" placeholder="Código da agência" name="codigo_agencia"/>
+
                       </div>
 
                       <div class="col-sm-4 mb-3">

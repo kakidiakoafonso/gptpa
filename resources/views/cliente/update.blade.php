@@ -177,13 +177,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="events">
-                    <li class="nav-item"><a class="nav-link" href="../../app/events/create-an-event.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="{{route("cliente.create")}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Cadastrar</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../../app/events/event-detail.html" data-bs-toggle="" aria-expanded="false">
+                    <li class="nav-item"><a class="nav-link" href="{{route("cliente.read")}}" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Listar</span>
                         </div>
                       </a>
@@ -626,18 +626,12 @@
                         {{$msg}}
                     </div>
                 @endif
-                @if($msg = Session::get("sucess"))
-                    <div class="alert alert-success" role="alert">
-                        A simple success alert—check it out!
-                        {{$msg}}
-                    </div>
-                @endif
 
                 <div class="card-header">
                   <h5 class="mb-0">Detalhes do cliente</h5>
                 </div>
                 <div class="card-body bg-light">
-                  <form method="POST" action="{{route("cliente.create")}}">
+                  <form method="POST" action="{{route("cliente.updateStore",$cliente->id)}}">
                     @csrf
                     <div class="row gx-2">
 
@@ -645,61 +639,51 @@
 
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-city">Nome</label>
-                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" name="nome"/>
+                        <input class="form-control" id="event-city" type="text" value="{{$cliente->nome}}" name="nome"/>
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-state">Tipo de cliente</label>
                         {{-- <input class="form-control" id="event-state" type="text" placeholder="Tipo de cliente" name="data_criacao"/> --}}
-                        <select class="form-control" name="tipo">
+                        <select class="form-control" name="tipo" >
                             <option value="Particular">Particular</option>
                             <option value="Estabelecimento">Estabelecimento</option>
                         </select>
                       </div>
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Numero da conta</label>
-                        <input class="form-control" type="text" placeholder="Numero da conta" name="numero_conta"/>
+                        <label class="form-label" for="event-country">Número da conta</label>
+                        <input class="form-control" type="text" value="{{$cliente->numero_conta}}" name="numero_conta"/>
                       </div>
 
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-city">IBAN</label>
-                        <input class="form-control" type="text" placeholder="iban" />
+                        <input class="form-control" type="text" value="{{$cliente->iban}}" />
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-state">Contacto</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="Contacto" name="contacto_1"/>
+                        <input class="form-control" id="event-state" type="text" value="{{$cliente->contacto_1}}" name="contacto_1"/>
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-country">Contacto</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="Contacto" name="contacto_2"/>
+                        <input class="form-control" id="event-country" type="text" value="{{$cliente->contacto_2}}" name="contacto_2"/>
                       </div>
 
                       <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-city">Codigo da agencia</label>
-                        <select class="form-control" name="codigo_agencia">
-                            <option value="Particular">Particular</option>
-                            <option value="Estabelecimento">Estabelecimento</option>
-                        </select>
-                      </div>
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-state">State</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="State" />
-                      </div>
-                      <div class="col-sm-4 mb-3">
-                        <label class="form-label" for="event-country">Country</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="Country" />
+                        <label class="form-label" for="event-city">Codigo da agência</label>
+                        <input class="form-control" id="event-state" type="text" value="{{$cliente->codigo_agencia}}" name="codigo_agencia"/>
+
                       </div>
 
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-city">Endereco</label>
-                        <input class="form-control" id="event-city" type="text" placeholder="Nome do cliente" name="endereco"/>
+                        <input class="form-control" id="event-city" type="text" value="{{$cliente->endereco->endereco}}" name="endereco"/>
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-state">Municipio</label>
-                        <input class="form-control" id="event-state" type="text" placeholder="State" name="municipio" />
+                        <input class="form-control" id="event-state" type="text" value="{{$cliente->endereco->municipio}}" name="municipio" />
                       </div>
                       <div class="col-sm-4 mb-3">
                         <label class="form-label" for="event-country">Provincia</label>
-                        <input class="form-control" id="event-country" type="text" placeholder="provincia" name="provincia"/>
+                        <input class="form-control" id="event-country" type="text" value="{{$cliente->endereco->provincia}}" name="provincia"/>
                       </div>
 
 

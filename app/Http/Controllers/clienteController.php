@@ -51,15 +51,42 @@ class clienteController extends Controller
     }
     public function updateShow($id)
     {
-        $cliente = cliente::findByid($id);
-        return view('cliente.update');
+        $cliente = cliente::find($id);
+        return view('cliente.update',["cliente"=>$cliente]);
     }
-    public function update($id)
+    public function update($id, Request $request)
     {
-        return view('cliente.update');
+        $cliente = cliente::find($id);
+        $cliente->nome =$request->nome;
+        $cliente->tipo =$request->tipo;
+        $cliente->codigo_agencia =$request->codigo_agencia;
+        $cliente->numero_conta =$request->numero_conta;
+        $cliente->contacto_1 =$request->contacto_1;
+        $cliente->contacto_2 =$request->contacto_2;
+        $cliente->endereco->endereco =$request->endereco;
+        $cliente->endereco->municipio =$request->municipio;
+        $cliente->endereco->provincia =$request->provincia;
+        if($cliente->update())
+        {
+            $endereco = endereco::find($cliente->endereco->id);
+            $endereco->endereco =$request->endereco;
+            $endereco->municipio =$request->municipio;
+            $endereco->provincia =$request->provincia;
+            if($endereco->update())
+            {
+                return redirect()->route('cliente.read')->with("sucess","Dados atualizados");
+            }
+            else
+                return redirect()->route('cliente.read')->with("error","Dados nao atualizados atualizados, endereco!");
+
+        }
+        return redirect()->route('cliente.read')->with("error","Dados nao atualizados atualizados, cliente!");
+
     }
     public function delete($id)
     {
-        return view('cliente.create');
+        $cliente = cliente::find($id);
+        $cliente->delete();
+        return redirect()->route('cliente.read');
     }
 }

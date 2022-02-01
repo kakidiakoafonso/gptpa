@@ -24,6 +24,7 @@ Route::get('cliente',[clienteController::class,'view'])->name('cliente.view');
 Route::get('cliente/listar',[clienteController::class,'read'])->name('cliente.read');
 Route::post('cliente',[clienteController::class,'create'])->name('cliente.create');
 Route::get('cliente/update/{id}',[clienteController::class,'updateShow'])->name('cliente.update');
+Route::post('cliente/update/{id}',[clienteController::class,'update'])->name('cliente.updateStore');
 Route::get('cliente/delete/{id}',[clienteController::class,'delete'])->name('cliente.delete');
 
 
