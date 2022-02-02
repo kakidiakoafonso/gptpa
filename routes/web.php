@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\clienteController;
+use App\Http\Controllers\ClienteTpaController;
 use App\Http\Controllers\EstabelecimentoController;
 use App\Http\Controllers\TpaController;
+use App\Models\ClienteTpa;
 use App\Models\Colaborador;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,16 @@ Route::get("tpa/listar",[TpaController::class,'read'])->name('tpa.read');
 Route::get("tpa/delete/{id}",[TpaController::class,'delete'])->name('tpa.delete');
 Route::get("tpa/update/{id}",[TpaController::class,'updateView'])->name('tpa.updateView');
 Route::post("tpa/update/{id}",[TpaController::class,'update'])->name('tpa.update');
+
+
+
+
+
+
+
+Route::get("gerir",[ClienteTpaController::class,'index']);
+
+
 
 
 
