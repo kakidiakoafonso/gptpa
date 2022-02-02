@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\clienteController;
 use App\Http\Controllers\EstabelecimentoController;
+use App\Http\Controllers\TpaController;
 use App\Models\Colaborador;
 use Illuminate\Support\Facades\Route;
 
@@ -27,20 +28,12 @@ Route::get('cliente/update/{id}',[clienteController::class,'updateShow'])->name(
 Route::post('cliente/update/{id}',[clienteController::class,'update'])->name('cliente.updateStore');
 Route::get('cliente/delete/{id}',[clienteController::class,'delete'])->name('cliente.delete');
 
-
-// Route::get('tpa',[clienteController::class,'show'])->name('tpa.view');
-// Route::post('tpa',[clienteController::class,'create'])->name('tpa.create');
-// Route::get('tpa',[clienteController::class,'read'])->name('tpa.read');
-// Route::put('tpa',[clienteController::class,'update'])->name('tpa.update');
-// Route::delete('tpa',[clienteController::class,'delete'])->name('tpa.update');
-
-
-// Route::get('colaborador',[clienteController::class,'show'])->name('colaborador.view');
-// Route::post('colaborador',[clienteController::class,'create'])->name('colaborador.create');
-// Route::get('colaborador',[clienteController::class,'read'])->name('colaborador.read');
-// Route::put('colaborador',[clienteController::class,'update'])->name('colaborador.update');
-// Route::delete('colaborador',[clienteController::class,'delete'])->name('colaborador.update');
-
+Route::get("tpa",[TpaController::class,'show'])->name('tpa.view');
+Route::post("tpa",[TpaController::class,'store'])->name('tpa.create');
+Route::get("tpa/listar",[TpaController::class,'read'])->name('tpa.read');
+Route::get("tpa/delete/{id}",[TpaController::class,'delete'])->name('tpa.delete');
+Route::get("tpa/update/{id}",[TpaController::class,'updateView'])->name('tpa.updateView');
+Route::post("tpa/update/{id}",[TpaController::class,'update'])->name('tpa.update');
 
 
 
